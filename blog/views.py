@@ -8,14 +8,14 @@ class PostList(ListView):
 
 class PostDetail(DetailView):
     model = Post
-    #template_name = 'blog/index.html'
+    #template_name = 'blog/post_list.html'
 
 # def index(request):
 #     posts = Post.objects.all().order_by('-pk')
 #
 #     return render(
 #         request,
-#         'blog/index.html',
+#         'blog/post_list.html',
 #         {
 #             'posts':posts,
 #         }

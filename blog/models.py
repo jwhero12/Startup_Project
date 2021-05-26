@@ -3,6 +3,7 @@ import os
 
 class Post(models.Model):
     title = models.CharField(max_length=30)
+    hook_text = models.CharField(max_length=100, blank=True)
     content = models.TextField()
     #link = models.URLField()
     #specific_id = models.CharField(max_length=15)

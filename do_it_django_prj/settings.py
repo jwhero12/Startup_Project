@@ -129,10 +129,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'_media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# INSTALLED_APPS = [ 'django.contrib.admin',
-#                    'django.contrib.auth',
-#                    'django.contrib.contenttypes',
-#                    'django.contrib.sessions',
-#                    'django.contrib.messages',
-#                    'django.contrib.staticfiles',
-#                    'blog' ]
+INSTALLED_APPS = [ 'django.contrib.admin',
+                   'django.contrib.auth',
+                   'django.contrib.contenttypes',
+                   'django.contrib.sessions',
+                   'django.contrib.messages',
+                   'django.contrib.staticfiles',
+                   'blog' ]

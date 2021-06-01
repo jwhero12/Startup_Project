@@ -6,14 +6,29 @@ class TestView(TestCase):
     def setup(self):
         self.client = Client()
 
+    def navbar_test(self,soup):
+        navbar = soup.nav
+        self.assertIn('국비 지원 기관 정보 사이트', navbar.text)
+        self.assertIn('About Developer', navbar.text)
+
+        logo_btn = navbar.find('a',text='국비 지원 기관 정보 사이트')
+        self.assertEqual(logo_btn.attrs['href'],'/')
+
+        home_btn = navbar.find('a', text='Home')
+        self.assertEqual(home_btn.attrs['href'], '/')
+
+        blog_btn = navbar.find('a', text='Information')
+        self.assertEqual(blog_btn.attrs['href'], '/blog/')
+
+        about_developer_btn = navbar.find('a', text='About Developer')
+        self.assertEqual(about_developer_btn.attrs['href'], '/about_developer/')
+
     def test_post_list(self):
         response = self.client.get('/blog/')
         self.assertEqual(response.status_code,200)
         soup = BeautifulSoup(response.content, 'html.parser')
         self.assertEqual(soup.title.text,'국비 지원 기관 정보')
-        navbar=soup.nav
-        self.assertIn('국비 지원 기관 정보 사이트',navbar.text)
-        self.assertIn('About Developer',navbar.text)
+        self.navbar_test(soup)
 
         self.assertEqual(Post.objects.count(),0)
         main_area = soup.find('div',id='main_area')
@@ -49,9 +64,7 @@ class TestView(TestCase):
             self.assertEqual(response.status_code,200)
             soup = BeautifulSoup(response.content,'html/parser')
 
-            navbar = soup.nav
-            self.assertIn('국비 지원 기관 정보 사이트', navbar.text)
-            self.assertIn('About Developer', navbar.text)
+            self.navbar_test(soup)
 
             self.assertIn(post_001.title,soup.title.text)
 
